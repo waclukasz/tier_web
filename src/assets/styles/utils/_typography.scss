@@ -1,0 +1,7 @@
+$base-font: 16px;
+
+@for $i from 1 through 5 {
+  .font-#{$i} {
+    font-size: calc(#{$base-font} + (#{$i} * 2px));
+  }
+}
