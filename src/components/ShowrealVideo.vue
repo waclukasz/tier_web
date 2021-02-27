@@ -3,8 +3,8 @@
     <video
       class="movie"
       :src="require(`@/assets/videos/${video.src}.webm`)"
-      :width="video.xl"
-      :height="video.height || 'auto'"
+      :width="'auto'"
+      :height="video.md"
       :style="{
         left: `calc(${video.position})`
       }"

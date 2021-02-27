@@ -1,79 +1,102 @@
-.slideshow-container {
-  padding-top: 90px;
-  opacity: 0;
-  animation-name: showup;
-  animation-duration: 1000ms;
-  animation-delay: 0s;
-  animation-fill-mode: forwards;
-  backdrop-filter: blur(1px);
+$delay: 0.015s;
+$duration: 0.3s;
+$easing: cubic-bezier(0.76, 0, 0.24, 1);
+
+.home-slideshow {
+  position: relative;
+  height: 100vh;
 }
 
-.movie-container {
-  width: 100%;
-  position: relative;
+.movies-list-container {
+  padding: 6rem 0;
 }
 
-.movie {
+.movie-list-item {
   position: relative;
-  margin-bottom: 100px;
-  object-fit: cover;
-  border: 2px solid whitesmoke;
-  cursor: pointer;
-  transition: transform 300ms ease-out;
+  display: flex;
+  align-items: center;
+  margin: 4.3rem 0;
 
   &:hover {
-    transform: scale(1.03);
+    z-index: 10000;
   }
 }
 
-.logo-container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.tier-logo {
-  position: relative;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%) scale(0.7);
-}
-
-.tier-logo path {
-  fill: #fff;
-  stroke: #fff;
-  opacity: 0;
+.movie-list-item > p {
+  display: inline-block;
+  margin: 0;
+  letter-spacing: -0.32rem;
+  font-size: 4rem;
   cursor: pointer;
-  animation: animate 0s cubic-bezier(0, 0.23, 1, 0.1); //2,5
-  animation-fill-mode: forwards;
-  // animation-delay: 1s;
-  position: absolute;
-  pointer-events: visiblePainted;
+  transition: color 300ms ease-out;
+
+  &:hover {
+    color: #b35b1ded;
+    z-index: 10000;
+  }
+
+  &.active {
+    z-index: 1000;
+  }
 }
 
-@keyframes animate {
+.index-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 10rem;
+}
+
+.index-border {
+  position: absolute;
+  display: block;
+  height: 4rem;
+  border-left: 3px solid #b35b1ded;
+}
+
+.movie-index {
+  position: absolute;
+  display: inline-block;
+  padding-left: 0.5rem;
+  color: #b35b1ded;
+  font-size: 1.8em;
+}
+
+.index-divider {
+  right: 2.8rem;
+  height: 3px;
+  width: 5rem;
+  margin-left: 2.8rem;
+  background-color: #b35b1ded;
+}
+
+.showreal-container {
+  position: absolute;
+  top: 20px;
+  width: 50rem;
+  z-index: 10;
+}
+
+.showreal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@keyframes slideIn {
   0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  80% {
     opacity: 0.3;
-    fill: none;
-    stroke-dasharray: 10;
-  }
-
-  30% {
-    fill: none;
-    stroke-dasharray: 100;
-  }
-
-  96% {
-    fill: rgba(255, 255, 255, 0);
   }
 
   100% {
-    stroke-dasharray: 1672;
     opacity: 1;
-    fill: rgba(255, 255, 255, 1);
-    filter: blur(2px);
+    transform: translateY(0%);
   }
 }
 
@@ -84,4 +107,61 @@
   to {
     opacity: 1;
   }
+}
+
+@keyframes fade-out {
+  from {
+    display: block;
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes moviesEnter {
+  from {
+    opacity: 0;
+    margin: 50px 0;
+  }
+  to {
+    opacity: 1;
+    margin: 0;
+    z-index: -10000;
+  }
+}
+
+@keyframes growUp {
+  from {
+    width: 1px;
+  }
+  to {
+    width: 5rem;
+  }
+}
+
+.fade-enter-active {
+  animation-name: showup;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+}
+.fade-leave-active {
+  animation-name: showup;
+  animation-duration: 10ms;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+
+.grow-enter-active {
+  animation-name: growUp;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+}
+.grow-leave-active {
+  animation-name: growUp;
+  animation-duration: 10ms;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
 }

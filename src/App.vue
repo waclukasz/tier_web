@@ -3,7 +3,7 @@
     id="app"
     class="main-app"
   >
-    <nav-bar></nav-bar>
+    <nav-bar />
     <router-view />
   </div>
 </template>
@@ -12,7 +12,7 @@
 import NavBar from '@/components/NavBar';
 
 export default {
-    components: {
+  components: {
     NavBar,
   },
 };
